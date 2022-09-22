@@ -1,0 +1,5 @@
+function removeDuplicateWords (s) {
+  s = s.split(" ");
+  s = (Array.from(new Set(s))).join(" ");
+  return s;
+}
