@@ -21,6 +21,7 @@ def binarySearch(array, target):
     print("Liczba nie została odnaleziona")
     return False
 
-array = [16,4,5,1,6,3,7,13,56,42,75,17,46,23,73]
+array = [16,4,5,1,6,3,7,13,56,42,75,17,46,23,73,12]
+array_posortowany = [3,5,8,9,12,18,21,43,52,71,183,967]
 
-binarySearch(array,69)
+binarySearch(array,12)
