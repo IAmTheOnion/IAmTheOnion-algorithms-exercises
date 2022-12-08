@@ -1,4 +1,5 @@
 def binarySearch(array, target):
+    porownania = 0
     for i in range(0, len(array)):
         for j in range(1, len(array)):
                 if array[j - 1] > array[j]:
@@ -7,17 +8,19 @@ def binarySearch(array, target):
     min = 0
     max = len(array)-1
     while max >= min:
-        print("min", min, "max", max)
+        porownania += 1
         guess = ((min + max) // 2)
-        print(guess)
+        print("Sprawdzana liczba", guess)
         if array[guess] == target:
-            print("Szukana znajduje sie na pozycji", guess)
+            print("Szukana znajduje sie na pozycji", guess, "ilosc porownan", porownania)
             return guess
         elif array[guess] < target:
             min = guess + 1
         else:
             max = guess - 1
+    print("Liczba nie została odnaleziona")
+    return False
 
-array = [16,4,5,1,6,3,7]
+array = [16,4,5,1,6,3,7,13,56,42,75,17,46,23,73]
 
-binarySearch(array,3)
+binarySearch(array,69)
