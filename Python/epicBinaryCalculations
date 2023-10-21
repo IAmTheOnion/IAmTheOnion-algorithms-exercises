@@ -1,0 +1,106 @@
+def DecToP(dec, p):
+    bin = []
+    while dec >= 1:
+        bin = bin + [dec % p]
+        dec = dec // p
+
+    bin = bin[::-1]
+    return bin
+
+
+def AddBin(bin1, bin2):
+    if length(bin1) > length(bin2):
+        l = length(bin1)
+        b = l - length(bin2)
+        bin2 = ([0] * b) + bin2
+    elif length(bin1) < length(bin2):
+        l = length(bin2)
+        b = l - length(bin1)
+        bin1 = ([0] * b) + bin1
+    else:
+        l = length(bin1)
+
+    value = []
+
+    reszta = 0
+
+    for i in range(l - 1, -1, -1):
+        j = bin1[i] + bin2[i] + reszta
+        if j >= 2:
+            value = [0] + value
+            reszta = 1
+        else:
+            value = [j] + value
+            reszta = 0
+    if reszta == 1:
+        value = [reszta] + value
+
+    return value
+
+
+def decToU2(dec, bit):
+    if dec < 0:
+        temp = dec * -1
+        bin = DecToP(temp, 2)
+
+        if length(bin) < bit:
+            bin = ([0] * (bit - length(bin))) + bin
+
+        for i in range(0, length(bin)):
+            if bin[i] == 0:
+                bin[i] = 1
+            else:
+                bin[i] = 0
+
+        bin = AddBin(bin, [1])
+    else:
+        bin = DecToP(dec, 2)
+        if length(bin) < bit:
+            bin = ([0] * (bit - length(bin))) + bin
+
+    return bin
+
+
+def binNaDec(bin):
+    p = 1
+    dec = 0
+    bin = bin[::-1]
+    for i in range(0, length(bin)):
+        if bin[i] == 1:
+            dec += 2 ** i
+    return dec
+
+def length(arr):
+    dlugosc = 0
+    for _ in arr:
+        dlugosc += 1
+    return dlugosc
+
+
+def ulamek_na_binarny(liczba):
+    cc = int(liczba)
+    cu = liczba - cc
+
+    bcc = ""
+
+    for i in decToU2(cc, 2):
+        bcc += str(i)
+
+    bcu = ""
+    while cu > 0:
+        cu *= 2
+        bit = int(cu)
+        bcu += str(bit)
+        if bit == 1:
+            cu -= 1
+        else:
+            cu -= bit
+    return bcc + "." + bcu
+
+
+print(ulamek_na_binarny(7.22))
+#print(DecToP(12, 2))
+#print(AddBin(DecToP(12, 2),DecToP(58, 2)))
+
+print(binNaDec(DecToP(80, 2)))
+
